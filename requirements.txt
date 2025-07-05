@@ -1,0 +1,12 @@
+langchain-core
+langchain-community
+langchain-openai
+langchain-groq
+langchain-weaviate
+langchain-huggingface
+weaviate-client>=4.0.0
+sentence-transformers  # 免费Embedding
+fastapi
+uvicorn
+python-dotenv
+PyPDF2>=1.27.0
