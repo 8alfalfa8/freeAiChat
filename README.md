@@ -1,4 +1,4 @@
-# 🛠️Terraform Code Generator from Excel(for AWS) 
+# 🛠️freeAiChat
 
 このリポジトリは、マルチLLM対応AIチャットエンジンです。
 
