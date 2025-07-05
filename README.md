@@ -130,7 +130,7 @@ python init_weaviate.py
 uvicorn app:app --reload
 ```
 
-#### 2. ナレッジ追加
+#### 2. ナレッジ追加API使用例
 
 ```bash
 curl -X POST "http://localhost:8000/ingest" \
@@ -150,7 +150,7 @@ curl -X POST "http://localhost:8000/ingest-txts" \
 -d '{"directory_path": "/txt_path"}'
 ```
 
-#### 3. 質問例
+#### 3. 質問API使用例
 
 ```bash
 curl -X POST "http://localhost:8000/ask" \
