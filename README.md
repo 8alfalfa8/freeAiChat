@@ -173,7 +173,11 @@ curl -X POST "http://localhost:8000/ask" \
 -H "Content-Type: application/json" \
 -d '{"question": "LangChainとは何ですか？"}'
 ```
-
+応答結果
+```bash
+curl -X POST "http://localhost:8000/ask" -H "Content-Type: application/json" -d '{"question": "LangChainとは何ですか？"}'
+{"answer":"LangChainは大規模言語モデルアプリケーションの開発用フレームワークです。"}
+```
 ---
 
 ### 特長とメリット
