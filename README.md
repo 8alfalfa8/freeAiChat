@@ -96,8 +96,8 @@ B --> C[LangChain RAGチェーン]
 C --> D[Weaviateで検索]
 D --> E[プロンプト構成]
 E --> F{LLM選択}
-F -->|OpenAI| G[\(G\)GPT-4]
-F -->|Groq| H[\(H\)Llama3]
+F -->|OpenAI| G[ \( G \) GPT-4]
+F -->|Groq| H[ \( H \) Llama3]
 G/H --> I[回答生成]
 I --> J[ユーザーに返答]
 ```
