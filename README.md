@@ -1,7 +1,10 @@
+# 🛠️Terraform Code Generator from Excel(for AWS) 
+
+このリポジトリは、マルチLLM対応AIチャットエンジンです。
 
 ---
 
-# 「LangChain + Weaviate + 切り替え可能なLLM（OpenAI/Groq） + API呼び出し + 無料Embedding」(RAG)に基づくチャットアプリケーション構成設計と実装案
+## 「LangChain + Weaviate + 切り替え可能なLLM（OpenAI/Groq） + API呼び出し + 無料Embedding」(RAG)に基づくチャットアプリケーション構成設計と実装案
 
 ---
 
@@ -23,6 +26,18 @@
 ```
 
 ---
+
+### 📦 構成ファイル
+
+```
+freeAiChat
+├─ LICENSE                             ← ライセンス
+├─ README                              ← 説明
+├─ requirements.txt                    ← 必須パッケージ一覧
+├─ app.py                              ← コアサービス
+├─ init_weaviate.py                    ← Weaviate初期化
+└─ docker-compose.yml                  ← Weaviate docker
+```
 
 ### コアコンポーネント実装
 
@@ -187,3 +202,30 @@ curl -X POST "http://localhost:8000/ask" \
 ---
 
 このソリューションは、コストと性能のバランスが求められるナレッジベース型QA（質問応答）アプリケーションに特に適しており、実運用において無料のEmbeddingモデルを活用しつつ、要件に応じてLLMプロバイダーを柔軟に選択できます。
+
+## ⚠️ 自己責任に関する注意事項（Self Responsibility Disclaimer）
+
+本ツール（Terraform Code Generator from Excel）は、ユーザーの利便性向上を目的として無償で提供されていますが、**ご利用に際してはすべて自己責任でお願いいたします。**
+
+* 本ツールを利用して生成されたコードの**正確性・完全性・安全性**について、開発者および関連団体は一切の保証を致しません。
+* ユーザーが本ツールを使用することによって生じた**いかなる損害・不具合・システム障害等に対しても、開発者および関連団体は責任を負いません**。
+* 実際の運用環境に適用する際は、**必ずご自身の責任において十分な検証およびレビューを実施してください。**
+
+## 🤝 商談歓迎
+
+追加機能の開発、環境構築のご支援をご希望の方は、下記までご連絡ください。
+```
+Colorful株式会社
+
+〒151-0051
+東京都渋谷区千駄ヶ谷3-51-10
+PORTAL POINT HARAJUKU 607
+info@colorful-inc.jp
+```
+https://colorful-inc.jp/
+
+## 📝 ライセンス
+
+本リポジトリは [MIT ライセンス](./LICENSE) のもとで公開されています。
+
+
