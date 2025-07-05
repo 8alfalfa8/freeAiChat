@@ -115,8 +115,13 @@ I --> J[ユーザーに返答]
 #### 1. サービス起動
 
 ```bash
-# Weaviate 起動
-docker run -d -p 8080:8080 weaviate/weaviate
+# Weaviate 起動(初回)
+docker-compose up -d
+
+初回以降
+docker ps         #コンテナー一覧
+docker stop       #コンテナー停止
+docker start      #コンテナー開始
 
 # Weaviateインデックスの初期化
 python init_weaviate.py
