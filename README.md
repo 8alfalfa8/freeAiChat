@@ -1,7 +1,7 @@
 
 ---
 
-# 「LangChain + Weaviate + 切り替え可能なLLM（OpenAI/Groq） + API呼び出し + 無料Embedding」に基づくアプリケーション構成設計と実装案
+# 「LangChain + Weaviate + 切り替え可能なLLM（OpenAI/Groq） + API呼び出し + 無料Embedding」に基づくRAGアプリケーション構成設計と実装案
 
 ---
 
