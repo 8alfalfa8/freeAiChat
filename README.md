@@ -146,7 +146,15 @@ python init_weaviate.py
 uvicorn app:app --reload
 ```
 
-#### 2. ナレッジ追加API使用例
+#### 2.APIドキュメント
+本システムではSwagger UIを利用しており、APIの仕様書が自動的に生成されます。
+APIサービスを起動後、ブラウザで以下のURLにアクセスすることで、Swagger UIによるAPIドキュメントを確認できます。
+
+```ブラウザ url
+"http://localhost:8000/doc"
+```
+
+#### 3. ナレッジ追加API使用例
 
 ```bash
 curl -X POST "http://localhost:8000/ingest" \
@@ -166,7 +174,7 @@ curl -X POST "http://localhost:8000/ingest-txts" \
 -d '{"directory_path": "/txt_path"}'
 ```
 
-#### 3. 質問API使用例
+#### 4. 質問API使用例
 
 ```bash
 curl -X POST "http://localhost:8000/ask" \
