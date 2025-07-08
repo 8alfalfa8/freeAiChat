@@ -146,7 +146,7 @@ python init_weaviate.py
 uvicorn app:app --reload
 ```
 
-#### 2.APIドキュメント
+#### 2.APIドキュメント（Swagger UIより自動生成）
 本システムではSwagger UIを利用しており、APIの仕様書が自動的に生成されます。
 APIサービスを起動後、ブラウザで以下のURLにアクセスすることで、Swagger UIによるAPIドキュメントを確認できます。
 
