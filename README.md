@@ -82,15 +82,13 @@ WEAVIATE_INDEX_NAME=knowledge_base
 
 #### 3. コアサービス (`app.py`)
 
-```python
-app.py をご参照ください。
-```
+[app.py](./app.py)  をご参照ください。
+
 
 #### 4. Weaviate 初期化 (`init_weaviate.py`)
 
-```python
-init_weaviate.py をご参照ください。
-```
+[init_weaviate.py](./init_weaviate.py) をご参照ください。
+
 
 ---
 
