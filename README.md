@@ -196,7 +196,7 @@ curl -X POST "http://localhost:8000/ask" -H "Content-Type: application/json" -d 
 2. **柔軟なアーキテクチャ**
 
    * 環境変数でLLMプロバイダーを簡単に切り替え可能
-   * 他のLLM（Anthropicやローカルモデルなど）への拡張も対応
+   * 他のLLM（Anthropicやローカルモデルなど）への拡張も対応可能（今後の予定）
 
 3. **プロダクション対応**
 
