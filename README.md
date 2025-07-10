@@ -65,7 +65,7 @@ PyPDF2>=1.27.0
 ```
 
 ```bash
-# 仮想環境の作成（任意）
+# 仮想環境の作成
 python3 -m venv venv
 source venv/bin/activate
 
