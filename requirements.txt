@@ -9,4 +9,5 @@ sentence-transformers  # 免费Embedding
 fastapi
 uvicorn
 python-dotenv
+python-multipart
 PyPDF2>=1.27.0
