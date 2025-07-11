@@ -156,7 +156,7 @@ uvicorn app:app --reload
 APIサービスを起動後、ブラウザで以下のURLにアクセスすることで、Swagger UIによるAPIドキュメントを確認できます。
 
 ```ブラウザ url
-"http://localhost:8000/doc"
+"http://localhost:8000/docs"
 ```
 
 #### 3. ナレッジ追加API使用例
