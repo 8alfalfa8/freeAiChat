@@ -108,7 +108,7 @@ UPLOADED_FILES_DIR=/upload_files_path
 
 #### 1. **ナレッジベース構築**
 
-* ユーザーが `/ingest /ingest-pdfs /ingest-txts` API を通じてテキストをアップロード
+* ユーザーが `/ingest /upload /ingest-url` API を通じてテキストをアップロード
 * 無料の `sentence-transformers` でEmbeddingを生成
 * データは Weaviate ベクトルDBに保存
 
