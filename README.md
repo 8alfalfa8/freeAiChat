@@ -57,12 +57,14 @@ langchain-groq
 langchain-weaviate
 langchain-huggingface
 weaviate-client>=4.0.0
-sentence-transformers  # 無料のEmbeddingモデル
+sentence-transformers  # 免费Embedding
 fastapi
 uvicorn
 python-dotenv
 python-multipart
-PyPDF2>=1.27.0
+pypdf
+beautifulsoup4
+requests
 ```
 
 ```bash
