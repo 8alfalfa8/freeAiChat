@@ -85,6 +85,9 @@ LLM_PROVIDER=groq  # 切り替え可能：openai または groq
 # Weaviate設定
 WEAVIATE_URL=http://localhost:8080
 WEAVIATE_INDEX_NAME=knowledge_base
+
+# そのた環境変数
+UPLOADED_FILES_DIR=/upload_files_path
 ```
 
 #### 3. コアサービス (`app.py`)
@@ -162,21 +165,25 @@ APIサービスを起動後、ブラウザで以下のURLにアクセスする�
 #### 3. ナレッジ追加API使用例
 
 ```bash
+# 文言よりナレッジ追加API
 curl -X POST "http://localhost:8000/ingest" \
 -H "Content-Type: application/json" \
 -d '{"text": "LangChainは大規模言語モデルアプリケーションの開発用フレームワークです..."}'
 ```
 
 ```bash
-curl -X POST "http://localhost:8000/ingest-pdfs" \
--H "Content-Type: application/json" \
--d '{"directory_path": "/pdf_path"}'
+# アップロードファイル（pdfまたはtxt）よりナレッジ追加API
+curl -X POST "http://localhost:8000/upload/" \ 
+-F "file=@/file_path/file_name.pdf" \
+-F "chunk_size=2000" \
+-F "preprocess=true"
 ```
 
 ```bash
-curl -X POST "http://localhost:8000/ingest-txts" \
+# 指定URLよりナレッジ追加API
+curl -X POST "http://localhost:8000/ingest-url" \
 -H "Content-Type: application/json" \
--d '{"directory_path": "/txt_path"}'
+-d '{"url": "https://example.com", "chunk_size": 1500, "preprocess": true}'
 ```
 
 #### 4. 質問API使用例
