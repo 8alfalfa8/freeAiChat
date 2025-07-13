@@ -9,7 +9,7 @@
 import os
 import re
 from dotenv import load_dotenv
-from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from pydantic import BaseModel
 from typing import List, Optional
 from langchain_core.prompts import ChatPromptTemplate
@@ -21,15 +21,28 @@ from langchain_groq import ChatGroq
 from langchain_openai import ChatOpenAI
 import weaviate
 from weaviate.embedded import EmbeddedOptions
-from PyPDF2 import PdfReader
+from pypdf import PdfReader
 from pathlib import Path
 import unicodedata
+import shutil
+
+import requests
+from bs4 import BeautifulSoup
+from urllib.parse import urlparse
+from typing import Union
 
 # 環境変数の読み込み
 load_dotenv()
 
 # FastAPIアプリの初期化
-app = FastAPI()
+app = FastAPI(
+    # 開発時にこれらの設定を追加
+    docs_url="/docs",
+    redoc_url="/redoc",
+    openapi_url="/openapi.json",
+    # キャッシュを無効化
+    swagger_ui_parameters={"cache_control": "no-store"},
+)
 
 ####################################
 # リクエストモデルの定義
@@ -43,17 +56,17 @@ class QueryRequest(BaseModel):
 class IngestRequest(BaseModel):
     text: str
 
-# PDFファイルのインジェストリクエストモデル
-# ディレクトリ内のPDFファイルを処理してチャンクに分
-class PDFIngestRequest(BaseModel):
-    directory_path: str
-    chunk_size: int = 1000  # デフォルト値を1000に設定
-    preprocess: bool = True  # デフォルトで前処理を有効化
+# URLインジェストリクエストモデル
+# URLからテキストを抽出して知識ベースに保存するためのリクエストモデル
+class UrlIngestRequest(BaseModel):
+    url: str
+    chunk_size: int = 1000
+    preprocess: bool = True
 
-# TXTファイルのインジェストリクエストモデル
-# ディレクトリ内のTXTファイルを処理してチャンクに分
-class TXTIngestRequest(BaseModel):
-    directory_path: str
+# アップロードファイルリクエストモデル
+# ファイルアップロードのためのリクエストモデル
+class UploadFileRequest(BaseModel):
+    file: UploadFile = File(...)
     chunk_size: int = 1000
     preprocess: bool = True
 
@@ -453,15 +466,83 @@ async def ingest_documents(request: IngestRequest):
     except Exception as e:
         return {"status": "error", "message": str(e)}
 
-@app.post("/ingest-pdfs")
-async def ingest_pdfs_from_directory(request: PDFIngestRequest):
+##########################################
+# ファイルアップロードエンドポイント
+##########################################
+# アップロードされたファイルの保存ディレクトリ
+uploaded_files_dir=os.getenv("UPLOADED_FILES_DIR", "./doc/")
+# アップロードされたPDFとTXTファイルのディレクトリ
+PDF_DIR = f"{uploaded_files_dir}/pdfs"
+TXT_DIR = f"{uploaded_files_dir}/txts"
+
+# ディレクトリ作成
+os.makedirs(PDF_DIR, exist_ok=True)
+os.makedirs(TXT_DIR, exist_ok=True)
+
+# 拡張子と保存先のマッピング
+EXTENSION_MAP = {
+    ".pdf": PDF_DIR,
+    ".txt": TXT_DIR
+}
+
+class FileIngestRequest(BaseModel):
+    directory_path: str
+    chunk_size: int
+    preprocess: bool
+
+@app.post("/upload/")
+async def upload_file(
+    file: UploadFile = File(...),
+    chunk_size: int = Form(default=1024),
+    preprocess: bool = Form(default=True)
+):
+    """
+    ファイルをアップロードして保存
+    - file: アップロードするファイル
+    - chunk_size: チャンクサイズ (デフォルト: 1000)
+    - preprocess: 前処理を行うか (デフォルト: True)
+    """    
+    filename = os.path.basename(file.filename)
+    ext = os.path.splitext(filename)[1].lower()  # .pdf or .txt
+    request = FileIngestRequest(
+        directory_path=PDF_DIR if ext == ".pdf" else TXT_DIR,
+        chunk_size=chunk_size, 
+        preprocess=preprocess
+    )
+
+    # 許可された拡張子かチェック
+    if ext not in EXTENSION_MAP:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Unsupported file type: {ext}. Only PDF and TXT are allowed."
+        )
+
+    # 保存パスの生成
+    save_dir = EXTENSION_MAP[ext]
+    file_path = os.path.join(save_dir, filename)
+
+    # 保存処理（上書き）
+    with open(file_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+    
+    if ext == ".pdf":
+        ingest_result = ingest_pdfs_from_directory(request)
+    else:
+        ingest_result = ingest_txts_from_directory(request)
+
+    return {"message": f"File uploaded successfully, {ingest_result['message']}", 
+    "filename": filename,
+    "ingest_result": ingest_result}
+
+
+def ingest_pdfs_from_directory(request: FileIngestRequest):
     try:
         chunks = process_pdf_directory(
             request.directory_path,
             request.chunk_size,
             request.preprocess
         )
-        
+
         # バッチ処理のサイズを動的に調整
         batch_size = min(50, max(10, len(chunks) // 10))
         successful_chunks = 0
@@ -481,14 +562,14 @@ async def ingest_pdfs_from_directory(request: PDFIngestRequest):
                     except Exception as e:
                         print(f"チャンクの保存に失敗しました: {str(e)}")
                         continue
-        
+
         return {
             "status": "success" if successful_chunks > 0 else "partial",
             "message": f"{successful_chunks}/{len(chunks)}個のチャンクを保存しました",
             "details": {
                 "chunk_size": request.chunk_size,
                 "preprocessing": request.preprocess,
-                "source_directory": request.directory_path
+                "source_directory": PDF_DIR
             }
         }
     except HTTPException as e:
@@ -496,9 +577,7 @@ async def ingest_pdfs_from_directory(request: PDFIngestRequest):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-
-@app.post("/ingest-txts")
-async def ingest_txts_from_directory(request: TXTIngestRequest):
+def ingest_txts_from_directory(request: FileIngestRequest):
     """TXTディレクトリの内容を処理して保存"""
     try:
         chunks = process_txt_directory(
@@ -506,20 +585,21 @@ async def ingest_txts_from_directory(request: TXTIngestRequest):
             request.chunk_size,
             request.preprocess
         )
-        
+
         # チャンクをバッチ処理で保存
         batch_size = 50
         for i in range(0, len(chunks), batch_size):
             batch = chunks[i:i + batch_size]
             vector_store.add_texts(batch)
         
+        print(f"保存成功: {len(chunks)} チャンク");
         return {
             "status": "success",
             "message": f"{len(chunks)}個のチャンクを保存しました",
             "details": {
                 "chunk_size": request.chunk_size,
                 "preprocessing": request.preprocess,
-                "source_directory": request.directory_path
+                "source_directory": TXT_DIR
             }
         }
     except HTTPException as e:
@@ -540,6 +620,124 @@ rag_chain = (
     | get_llm()
     | StrOutputParser()
 )
+
+####################################
+# URL処理ユーティリティ
+####################################
+def is_valid_url(url: str) -> bool:
+    """URLが有効かどうかを検証"""
+    try:
+        result = urlparse(url)
+        return all([result.scheme, result.netloc])
+    except ValueError:
+        return False
+
+def fetch_url_content(url: str) -> Union[str, None]:
+    """URLからテキストコンテンツを取得"""
+    try:
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+        }
+        response = requests.get(url, headers=headers, timeout=10)
+        response.raise_for_status()
+
+        print("11111111111111")
+        # HTMLの場合はBeautifulSoupでテキストを抽出
+        if 'text/html' in response.headers.get('Content-Type', ''):
+            soup = BeautifulSoup(response.text, 'html.parser')
+            print("22222222222222")
+            
+            # 不要な要素を削除
+            for element in soup(['script', 'style', 'nav', 'footer', 'iframe', 'noscript']):
+                element.decompose()
+                
+            # メインコンテンツを優先的に取得
+            main_content = soup.find('main') or soup.find('article') or soup.body
+            text = main_content.get_text(separator='\n', strip=True) if main_content else soup.get_text()
+            print("text:", text[:100])  # 最初の100文字を表示
+            return text
+        else:
+            print("33333333333333")
+            # プレーンテキストやその他のコンテンツ
+            return response.text
+    except Exception as e:
+        print(f"URLからのコンテンツ取得に失敗しました: {str(e)}")
+        return None
+
+def process_url_content(content: str, chunk_size: int, preprocess: bool) -> List[str]:
+    """URLコンテンツを処理してチャンクに分割"""
+    if not content:
+        return []
+    
+    if preprocess:
+        content = preprocess_text_txt(content)  # TXT用の前処理を使用
+        print("前処理後のコンテンツ:", content) 
+    
+    return split_into_chunks_txt(content, chunk_size)
+
+
+##########################################
+# 指定URL情報保存エンドポイント
+##########################################
+@app.post("/ingest-url")
+async def ingest_from_url(request: UrlIngestRequest):
+    """
+    URLの内容を知識ベースに保存
+    - url: 取得対象のURL
+    - chunk_size: チャンクサイズ (デフォルト: 1000)
+    - preprocess: 前処理を行うか (デフォルト: True)
+    """
+    if not is_valid_url(request.url):
+        raise HTTPException(status_code=400, detail="無効なURL形式です")
+    
+    content = fetch_url_content(request.url)
+    if not content:
+        raise HTTPException(status_code=400, detail="URLからコンテンツを取得できませんでした")
+    
+    chunks = process_url_content(content, request.chunk_size, request.preprocess)
+    if not chunks:
+        raise HTTPException(status_code=400, detail="有効なチャンクを生成できませんでした")
+    
+    try:
+        print("55555555555555")
+        # バッチ処理で保存
+        batch_size = min(50, max(10, len(chunks) // 10))
+        print(f"バッチサイズ: {batch_size}")
+        print(f"保存するチャンク数: {len(chunks)}")
+        successful_chunks = 0
+        
+        for i in range(0, len(chunks), batch_size):
+            print("66666666666666")
+            batch = chunks[i:i + batch_size]
+            try:
+                print("777777777777777")
+                print(f"バッチ {i//batch_size + 1} を保存中: {len(batch)} チャンク")
+                vector_store.add_texts(batch)
+                successful_chunks += len(batch)
+            except Exception as e:
+                print("88888888888888")
+                print(f"バッチ {i//batch_size + 1} の保存中にエラーが発生しました: {str(e)}")
+                # 失敗した場合は個別に試す
+                for chunk in batch:
+                    try:
+                        vector_store.add_texts([chunk])
+                        successful_chunks += 1
+                    except Exception as e:
+                        print(f"チャンクの保存に失敗しました: {str(e)}")
+                        continue
+        
+        return {
+            "status": "success" if successful_chunks > 0 else "partial",
+            "message": f"{successful_chunks}/{len(chunks)}個のチャンクを保存しました",
+            "details": {
+                "url": request.url,
+                "chunk_size": request.chunk_size,
+                "preprocessing": request.preprocess,
+                "content_length": len(content)
+            }
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"知識ベースへの保存中にエラーが発生しました: {str(e)}")
 
 # シャットダウン処理
 @app.on_event("shutdown")
