@@ -641,11 +641,9 @@ def fetch_url_content(url: str) -> Union[str, None]:
         response = requests.get(url, headers=headers, timeout=10)
         response.raise_for_status()
 
-        print("11111111111111")
         # HTMLの場合はBeautifulSoupでテキストを抽出
         if 'text/html' in response.headers.get('Content-Type', ''):
             soup = BeautifulSoup(response.text, 'html.parser')
-            print("22222222222222")
             
             # 不要な要素を削除
             for element in soup(['script', 'style', 'nav', 'footer', 'iframe', 'noscript']):
@@ -657,7 +655,6 @@ def fetch_url_content(url: str) -> Union[str, None]:
             print("text:", text[:100])  # 最初の100文字を表示
             return text
         else:
-            print("33333333333333")
             # プレーンテキストやその他のコンテンツ
             return response.text
     except Exception as e:
@@ -699,7 +696,6 @@ async def ingest_from_url(request: UrlIngestRequest):
         raise HTTPException(status_code=400, detail="有効なチャンクを生成できませんでした")
     
     try:
-        print("55555555555555")
         # バッチ処理で保存
         batch_size = min(50, max(10, len(chunks) // 10))
         print(f"バッチサイズ: {batch_size}")
@@ -707,15 +703,12 @@ async def ingest_from_url(request: UrlIngestRequest):
         successful_chunks = 0
         
         for i in range(0, len(chunks), batch_size):
-            print("66666666666666")
             batch = chunks[i:i + batch_size]
             try:
-                print("777777777777777")
                 print(f"バッチ {i//batch_size + 1} を保存中: {len(batch)} チャンク")
                 vector_store.add_texts(batch)
                 successful_chunks += len(batch)
             except Exception as e:
-                print("88888888888888")
                 print(f"バッチ {i//batch_size + 1} の保存中にエラーが発生しました: {str(e)}")
                 # 失敗した場合は個別に試す
                 for chunk in batch:
