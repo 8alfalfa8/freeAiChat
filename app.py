@@ -652,7 +652,6 @@ def fetch_url_content(url: str) -> Union[str, None]:
             # メインコンテンツを優先的に取得
             main_content = soup.find('main') or soup.find('article') or soup.body
             text = main_content.get_text(separator='\n', strip=True) if main_content else soup.get_text()
-            print("text:", text[:100])  # 最初の100文字を表示
             return text
         else:
             # プレーンテキストやその他のコンテンツ
@@ -668,7 +667,6 @@ def process_url_content(content: str, chunk_size: int, preprocess: bool) -> List
     
     if preprocess:
         content = preprocess_text_txt(content)  # TXT用の前処理を使用
-        print("前処理後のコンテンツ:", content) 
     
     return split_into_chunks_txt(content, chunk_size)
 
@@ -698,8 +696,6 @@ async def ingest_from_url(request: UrlIngestRequest):
     try:
         # バッチ処理で保存
         batch_size = min(50, max(10, len(chunks) // 10))
-        print(f"バッチサイズ: {batch_size}")
-        print(f"保存するチャンク数: {len(chunks)}")
         successful_chunks = 0
         
         for i in range(0, len(chunks), batch_size):
