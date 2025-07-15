@@ -53,14 +53,10 @@ Node.jsがインストールされていない場合：
 
 ## 環境構築手順
 
-### 1. 必要なパッケージのインストール
+### 1. 依存関係をインストールする
 
-```shellscript
-# shadcn/uiの初期化
-npx shadcn@latest init
-
-# Lucide Reactアイコンをインストール（shadcn/uiに含まれている場合もあります）
-npm install lucide-react
+```bash
+npm install
 ```
 
 ### 2. 環境変数の設定
