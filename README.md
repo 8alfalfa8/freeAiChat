@@ -14,6 +14,13 @@
 
 ---
 
+### 使用技術
+
+- **各LLM API**: AIエンジン
+- **FastAPI/SwaggerUI**: REST API
+- **Weaviate**: ベクトルデータベース
+- **LangChain**: LLMアプリケーションの開発用フレームワーク
+
 ### システム構成図
 
 ```
