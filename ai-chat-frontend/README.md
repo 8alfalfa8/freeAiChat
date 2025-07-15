@@ -53,7 +53,17 @@ Node.jsがインストールされていない場合：
 
 ## 環境構築手順
 
-### 1. 環境変数の設定
+### 1. 必要なパッケージのインストール
+
+```shellscript
+# shadcn/uiの初期化
+npx shadcn@latest init
+
+# Lucide Reactアイコンをインストール（shadcn/uiに含まれている場合もあります）
+npm install lucide-react
+```
+
+### 2. 環境変数の設定
 
 プロジェクトルートに`.env.local`ファイルを作成：
 
@@ -72,7 +82,7 @@ FASTAPI_URL=http://localhost:8000
 FASTAPI_API_KEY=your-fastapi-key-here
 ```
 
-### 2. ファイル構成
+### 3. ファイル構成
 ```
 ai-chat-frontend/
 ├── public/
