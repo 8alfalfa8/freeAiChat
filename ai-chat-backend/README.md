@@ -1,6 +1,6 @@
-# 🛠️freeAiChat
+# 🛠️ai-chat-backend
 
-このリポジトリ（freeAiChat）は、マルチLLM対応AIチャットAPIエンジンです。
+ai-chat-backendは、マルチLLM対応AIチャットAPIエンジンです。
 
 ◆ ユースケース
 * コールセンターやサポートデスクの自動化
