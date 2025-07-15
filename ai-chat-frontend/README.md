@@ -1,15 +1,7 @@
 # 🛠️ai-chat-frontend
 
-このリポジトリは、マルチLLM対応AIチャットAPIエンジンのフロント（画面）処理です。
-
-ai-chat-backend APIを使用してReact.jsとshadcn/uiでチャットボットのフロントエンドを作成します。
-
-```typescriptreact 
-project="ai-chat-frontend"
-
-```
-
-このチャットアプリケーションには以下の機能が含まれています：
+ai-chat-frontend は、同一リポジトリ内の 「ai-chat-backend」のAPI を利用して構築された、チャットボット用のフロントエンドです。
+本フロントエンドは、React.js と shadcn/ui を用いて開発されており、ユーザーインターフェースの表示およびチャット機能の画面処理を担当します。
 
 ## 主な機能
 
