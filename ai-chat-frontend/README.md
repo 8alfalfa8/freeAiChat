@@ -74,7 +74,7 @@ FASTAPI_API_KEY=your-fastapi-key-here
 ```
 
 ### 2. ファイル構成
-
+```
 ai-chat-frontend/
 ├── public/
 │   └── ...
