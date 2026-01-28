@@ -64,7 +64,7 @@ langchain-groq
 langchain-weaviate
 langchain-huggingface
 weaviate-client>=4.0.0
-sentence-transformers  # 免费Embedding
+sentence-transformers  # 無料Embedding
 fastapi
 uvicorn
 python-dotenv
@@ -235,5 +235,6 @@ curl -X POST "http://localhost:8000/ask" -H "Content-Type: application/json" -d 
 ---
 
 このソリューションは、コストと性能のバランスが求められるナレッジベース型QA（質問応答）アプリケーションに特に適しており、実運用において無料のEmbeddingモデルを活用しつつ、要件に応じてLLMプロバイダーを柔軟に選択できます。
+
 
 
