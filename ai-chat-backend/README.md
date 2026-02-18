@@ -236,13 +236,8 @@ curl -X POST "http://localhost:8000/ask" -H "Content-Type: application/json" -d 
 
 ---
 
-### 【資料】
-
-* [AI技術](https://github.com/8alfalfa8/Tec-Doc/tree/main/02_%E6%8A%80%E8%A1%93/AI)
-
----
-
 このソリューションは、コストと性能のバランスが求められるナレッジベース型QA（質問応答）アプリケーションに特に適しており、実運用において無料のEmbeddingモデルを活用しつつ、要件に応じてLLMプロバイダーを柔軟に選択できます。
+
 
 
 
