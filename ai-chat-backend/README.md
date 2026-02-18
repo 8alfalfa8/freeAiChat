@@ -8,6 +8,8 @@ ai-chat-backendは、マルチLLM対応AIチャットAPIエンジンです。
 * ナレッジベース連携型FAQチャットボット
 * 営業・提案支援チャット（CRM連携）
 
+◆ [AI開発に関する技術資料](https://github.com/8alfalfa8/Tec-Doc/tree/main/02_%E6%8A%80%E8%A1%93/AI)
+
 ---
 
 ## 「LangChain + Weaviate + 切り替え可能なLLM（OpenAI/Groq） + API呼び出し + 無料Embedding」(RAG)に基づくチャットアプリケーション構成設計と実装案
@@ -241,6 +243,7 @@ curl -X POST "http://localhost:8000/ask" -H "Content-Type: application/json" -d 
 ---
 
 このソリューションは、コストと性能のバランスが求められるナレッジベース型QA（質問応答）アプリケーションに特に適しており、実運用において無料のEmbeddingモデルを活用しつつ、要件に応じてLLMプロバイダーを柔軟に選択できます。
+
 
 
 
