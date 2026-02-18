@@ -8,6 +8,8 @@
 * ナレッジベース連携型FAQチャットボット
 * 営業・提案支援チャット（CRM連携）
 
+◆ [AI開発に関する技術資料](https://github.com/8alfalfa8/Tec-Doc/tree/main/02_%E6%8A%80%E8%A1%93/AI)
+
 ---
 
 ### 📦 構成
