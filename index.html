@@ -1,9 +1,395 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="refresh" content="0;URL='https://8alfalfa8.github.io/freeAiChat/README.md'" />
-  </head>
-  <body>
-    <p>リダイレクト中... <a href="https://8alfalfa8.github.io/freeAiChat/README.md">READMEはこちら</a></p>
-  </body>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>プロジェクト　ドキュメント</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="/usr/share/javascript/mathjax/MathJax.js"
+  type="text/javascript"></script>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">プロジェクト　ドキュメント</h1>
+</header>
+<h1 id="freeaichat">🛠️freeAiChat</h1>
+<hr />
+<h2 id="閲覧準備markdown-viewer-のインストール">閲覧準備：Markdown
+Viewer のインストール</h2>
+<p>本リポジトリのドキュメント（Markdown記法）をブラウザで正しく閲覧し、図解（Mermaid）を表示させるために、ブラウザ拡張機能
+<strong>「Markdown Viewer」</strong>
+のインストールと設定を推奨しています。</p>
+<h3 id="インストール">1. インストール</h3>
+<p>お使いのブラウザに合わせて、以下のリンクからインストールしてください。</p>
+<ul>
+<li><strong>Chrome / Edge</strong>: <a
+href="https://chrome.google.com/webstore/detail/markdown-viewer/ckkdlimhmcedbflnpeebnljnphakjden">Markdown
+Viewer (Chrome Web Store)</a></li>
+<li><strong>Firefox</strong>: <a
+href="https://addons.mozilla.org/en-US/firefox/addon/markdown-viewer/">Markdown
+Viewer (Firefox Add-ons)</a></li>
+</ul>
+<h3 id="ローカルファイルへのアクセス許可必須">2.
+ローカルファイルへのアクセス許可（必須）</h3>
+<p>PC上のファイルをブラウザで開くために、以下の設定を行ってください。</p>
+<ol type="1">
+<li>ブラウザの拡張機能アイコン（パズルマーク）から <strong>[Markdown
+Viewer]</strong> &gt;
+<strong>[詳細]</strong>（または拡張機能の管理）を開きます。</li>
+<li><strong>「ファイルの URL へのアクセスを許可する」</strong> を
+<strong>ON</strong> にします。</li>
+</ol>
+<h3 id="図解mermaidと数式latexの有効化">3.
+図解（Mermaid）と数式（LaTeX）の有効化</h3>
+<p>ドキュメント内のチャートを表示するために必要です。</p>
+<ol type="1">
+<li>Markdown Viewer のオプション（⚙アイコン）を開きます。</li>
+<li>左メニューの <strong>[Compiler]</strong> を選択します。</li>
+<li>以下の2項目にチェックを入れてください。
+<ul>
+<li><strong>[Mermaid]</strong>:
+チャートや図解を表示するために必要です。</li>
+<li><strong>[MathJax]</strong>: <span
+class="math inline">\(E=mc^2\)</span>
+などの数式（LaTeX）を表示するために必要です。</li>
+</ul></li>
+</ol>
+<p>設定完了後、この <code>README.md</code>
+ファイルをブラウザにドラッグ＆ドロップすることで、整形されたレイアウトで閲覧可能になります。</p>
+<hr />
+<p>本リポジトリ（freeAiChat）は、マルチLLM対応AIチャットアプリです。</p>
+<p>◆ ユースケース * コールセンターやサポートデスクの自動化 *
+社内ヘルプデスク（IT・人事・総務）の自動応答 *
+ナレッジベース連携型FAQチャットボット *
+営業・提案支援チャット（CRM連携）</p>
+<p>◆ <a
+href="https://github.com/8alfalfa8/Tec-Doc/tree/main/02_%E6%8A%80%E8%A1%93/AI">AI開発に関する技術資料</a></p>
+<hr />
+<h3 id="構成概要">📦 構成（概要）</h3>
+<pre><code>freeAiChat
+├─ ai-chat-backend/                    ← バックエンド、サーバー、API
+├─ ai-chat-frontend/                   ← フロントエンド、クライアント、Web
+├─ LICENSE                             ← ライセンス
+└─ README                              ← 説明</code></pre>
+<hr />
+<h2 id="自己責任に関する注意事項self-responsibility-disclaimer">⚠️
+自己責任に関する注意事項（Self Responsibility Disclaimer）</h2>
+<p>本ツール（Terraform Code Generator from
+Excel）は、ユーザーの利便性向上を目的として無償で提供されていますが、<strong>ご利用に際してはすべて自己責任でお願いいたします。</strong></p>
+<ul>
+<li>本ツールを利用して生成されたコードの<strong>正確性・完全性・安全性</strong>について、開発者および関連団体は一切の保証を致しません。</li>
+<li>ユーザーが本ツールを使用することによって生じた<strong>いかなる損害・不具合・システム障害等に対しても、開発者および関連団体は責任を負いません</strong>。</li>
+<li>実際の運用環境に適用する際は、<strong>必ずご自身の責任において十分な検証およびレビューを実施してください。</strong></li>
+</ul>
+<hr />
+<h2 id="商談歓迎">🤝 商談歓迎</h2>
+<p>追加機能の開発、環境構築のご支援をご希望の方は、下記までご連絡ください。</p>
+<pre><code>Colorful株式会社
+
+〒151-0051
+東京都渋谷区千駄ヶ谷3-51-10
+PORTAL POINT HARAJUKU 607
+info@colorful-inc.jp</code></pre>
+<p>https://colorful-inc.jp/</p>
+<hr />
+<h2 id="ライセンス">📝 ライセンス</h2>
+<p>本リポジトリは <a href="./LICENSE">MIT ライセンス</a>
+のもとで公開されています。</p>
+<hr />
+<!-- START_TREE -->
+<h2 id="プロジェクト構成全量">プロジェクト構成（全量）</h2>
+<p>├── <a href="LICENSE">LICENSE</a><br />
+├── <a href="README.md">README.md</a><br />
+├── ai-chat-backend/<br />
+│         ├── <a href="ai-chat-backend/README.md">README.md</a><br />
+│         ├── <a href="ai-chat-backend/app.py">app.py</a><br />
+│         ├── <a
+href="ai-chat-backend/docker-compose.yml">docker-compose.yml</a><br />
+│         ├── <a
+href="ai-chat-backend/init_weaviate.py">init_weaviate.py</a><br />
+│         └── <a
+href="ai-chat-backend/requirements.txt">requirements.txt</a><br />
+├── ai-chat-frontend/<br />
+│         ├── <a href="ai-chat-frontend/README.md">README.md</a><br />
+│         ├── <a href="ai-chat-frontend/admin.png">admin.png</a><br />
+│         ├── <a href="ai-chat-frontend/chat.png">chat.png</a><br />
+│         ├── <a
+href="ai-chat-frontend/components.json">components.json</a><br />
+│         ├── <a
+href="ai-chat-frontend/eslint.config.mjs">eslint.config.mjs</a><br />
+│         ├── <a
+href="ai-chat-frontend/next-env.d.ts">next-env.d.ts</a><br />
+│         ├── <a
+href="ai-chat-frontend/next.config.ts">next.config.ts</a><br />
+│         ├── <a
+href="ai-chat-frontend/package-lock.json">package-lock.json</a><br />
+│         ├── <a
+href="ai-chat-frontend/package.json">package.json</a><br />
+│         ├── <a
+href="ai-chat-frontend/postcss.config.mjs">postcss.config.mjs</a><br />
+│         ├── public/<br />
+│         │         ├── <a
+href="ai-chat-frontend/public/file.svg">file.svg</a><br />
+│         │         ├── <a
+href="ai-chat-frontend/public/globe.svg">globe.svg</a><br />
+│         │         ├── <a
+href="ai-chat-frontend/public/next.svg">next.svg</a><br />
+│         │         ├── <a
+href="ai-chat-frontend/public/vercel.svg">vercel.svg</a><br />
+│         │         └── <a
+href="ai-chat-frontend/public/window.svg">window.svg</a><br />
+│         ├── src/<br />
+│         │         ├── app/<br />
+│         │         │         ├── admin/<br />
+│         │         │         │         └── <a
+href="ai-chat-frontend/src/app/admin/page.tsx">page.tsx</a><br />
+│         │         │         ├── api/<br />
+│         │         │         │         ├── admin/<br />
+│         │         │         │         │         └── ingest/<br />
+│         │         │         │         │                   ├──
+file/<br />
+│         │         │         │         │                   │         └──
+<a
+href="ai-chat-frontend/src/app/api/admin/ingest/file/route.ts">route.ts</a><br />
+│         │         │         │         │                   ├──
+text/<br />
+│         │         │         │         │                   │         └──
+<a
+href="ai-chat-frontend/src/app/api/admin/ingest/text/route.ts">route.ts</a><br />
+│         │         │         │         │                   └──
+url/<br />
+│         │         │         │         │                             └──
+<a
+href="ai-chat-frontend/src/app/api/admin/ingest/url/route.ts">route.ts</a><br />
+│         │         │         │         └── chat/<br />
+│         │         │         │                   └── <a
+href="ai-chat-frontend/src/app/api/chat/route.ts">route.ts</a><br />
+│         │         │         ├── <a
+href="ai-chat-frontend/src/app/favicon.ico">favicon.ico</a><br />
+│         │         │         ├── <a
+href="ai-chat-frontend/src/app/globals.css">globals.css</a><br />
+│         │         │         ├── <a
+href="ai-chat-frontend/src/app/layout.tsx">layout.tsx</a><br />
+│         │         │         └── <a
+href="ai-chat-frontend/src/app/page.tsx">page.tsx</a><br />
+│         │         ├── components/<br />
+│         │         │         └── ui/<br />
+│         │         │                   ├── <a
+href="ai-chat-frontend/src/components/ui/alert.tsx">alert.tsx</a><br />
+│         │         │                   ├── <a
+href="ai-chat-frontend/src/components/ui/avatar.tsx">avatar.tsx</a><br />
+│         │         │                   ├── <a
+href="ai-chat-frontend/src/components/ui/badge.tsx">badge.tsx</a><br />
+│         │         │                   ├── <a
+href="ai-chat-frontend/src/components/ui/button.tsx">button.tsx</a><br />
+│         │         │                   ├── <a
+href="ai-chat-frontend/src/components/ui/card.tsx">card.tsx</a><br />
+│         │         │                   ├── <a
+href="ai-chat-frontend/src/components/ui/input.tsx">input.tsx</a><br />
+│         │         │                   ├── <a
+href="ai-chat-frontend/src/components/ui/label.tsx">label.tsx</a><br />
+│         │         │                   ├── <a
+href="ai-chat-frontend/src/components/ui/progress.tsx">progress.tsx</a><br />
+│         │         │                   ├── <a
+href="ai-chat-frontend/src/components/ui/scroll-area.tsx">scroll-area.tsx</a><br />
+│         │         │                   ├── <a
+href="ai-chat-frontend/src/components/ui/switch.tsx">switch.tsx</a><br />
+│         │         │                   ├── <a
+href="ai-chat-frontend/src/components/ui/tabs.tsx">tabs.tsx</a><br />
+│         │         │                   └── <a
+href="ai-chat-frontend/src/components/ui/textarea.tsx">textarea.tsx</a><br />
+│         │         └── lib/<br />
+│         │                   └── <a
+href="ai-chat-frontend/src/lib/utils.ts">utils.ts</a><br />
+│         └── <a
+href="ai-chat-frontend/tsconfig.json">tsconfig.json</a><br />
+└── <a href="index.html">index.html</a></p>
+<p>16 directories, 46 files<br />
+<!-- END_TREE --></p>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['2797', '2797'], ['\\[', '\\]']],
+      processEscapes: true
+    },
+    options: {
+      ignoreHtmlClass: 'tex2jax_ignore',
+      processHtmlClass: 'tex2jax_process'
+    }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'default'
+  });
+</script>
+<style>
+  /* 見栄えを良くするための最小限のスタイル */
+  body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 0 auto; padding: 2rem; color: #333; }
+  pre { background: #f4f4f4; padding: 1rem; overflow-x: auto; border-radius: 5px; }
+  code { font-family: monospace; background: #eee; padding: 0.2rem 0.4rem; border-radius: 3px; }
+</style>
+</body>
 </html>
