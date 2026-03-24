@@ -18,7 +18,7 @@ jobs:
         run: |
           # tree.txtを初期化
           # echo '```' > tree.txt
-          echo '## プロジェクト構成  ' > tree.txt
+          echo '## プロジェクト構成（全量）  ' > tree.txt
           
           python3 -c "
           import os
