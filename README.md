@@ -85,7 +85,7 @@ https://colorful-inc.jp/
 ---
 
 <!-- START_TREE -->
-## プロジェクト構成  
+## プロジェクト構成（全量）  
 ├── [LICENSE](LICENSE)  
 ├── [README.md](README.md)  
 ├── ai-chat-backend/  
