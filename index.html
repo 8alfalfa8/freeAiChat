@@ -242,125 +242,118 @@ Excel）は、ユーザーの利便性向上を目的として無償で提供さ
 <hr />
 <h2 id="商談歓迎">🤝 商談歓迎</h2>
 <p>追加機能の開発、環境構築のご支援をご希望の方は、下記までご連絡ください。</p>
-<pre><code>Colorful株式会社
-
-〒151-0051
-東京都渋谷区千駄ヶ谷3-51-10
-PORTAL POINT HARAJUKU 607
-info@colorful-inc.jp</code></pre>
-<p>https://colorful-inc.jp/</p>
+<p>個人開発ならではのフットワークの軽さで、NDA（秘密保持契約）の締結から、個別のお見積書・請求書の発行まで柔軟に対応いたします。
+まずは「こういった使い方はできるか？」というカジュアルなご相談から大歓迎です。</p>
+<ul>
+<li><p><strong>担当者（開発者）:</strong> Y.Fukumori</p></li>
+<li><p><strong>連絡先 (LinkedIn:):</strong>
+www.linkedin.com/in/8alfalfa8</p></li>
+<li><p><strong>対応可能時間:</strong>
+平日夜間、土日祝日（メールは24時間受付、2営業日以内にご返信いたします）</p></li>
+</ul>
 <hr />
 <h2 id="ライセンス">📝 ライセンス</h2>
 <p>本リポジトリは <a href="./LICENSE">MIT ライセンス</a>
 のもとで公開されています。</p>
 <hr />
 <!-- START_TREE -->
-<h2 id="プロジェクト構成全量">プロジェクト構成（全量）</h2>
+<h2 id="プロジェクト構成">プロジェクト構成</h2>
 <p>├── <a href="LICENSE">LICENSE</a><br />
 ├── <a href="README.md">README.md</a><br />
 ├── ai-chat-backend/<br />
-│         ├── <a href="ai-chat-backend/README.md">README.md</a><br />
-│         ├── <a href="ai-chat-backend/app.py">app.py</a><br />
-│         ├── <a
+│   ├── <a href="ai-chat-backend/README.md">README.md</a><br />
+│   ├── <a href="ai-chat-backend/app.py">app.py</a><br />
+│   ├── <a
 href="ai-chat-backend/docker-compose.yml">docker-compose.yml</a><br />
-│         ├── <a
+│   ├── <a
 href="ai-chat-backend/init_weaviate.py">init_weaviate.py</a><br />
-│         └── <a
+│   └── <a
 href="ai-chat-backend/requirements.txt">requirements.txt</a><br />
 ├── ai-chat-frontend/<br />
-│         ├── <a href="ai-chat-frontend/README.md">README.md</a><br />
-│         ├── <a href="ai-chat-frontend/admin.png">admin.png</a><br />
-│         ├── <a href="ai-chat-frontend/chat.png">chat.png</a><br />
-│         ├── <a
+│   ├── <a href="ai-chat-frontend/README.md">README.md</a><br />
+│   ├── <a href="ai-chat-frontend/admin.png">admin.png</a><br />
+│   ├── <a href="ai-chat-frontend/chat.png">chat.png</a><br />
+│   ├── <a
 href="ai-chat-frontend/components.json">components.json</a><br />
-│         ├── <a
+│   ├── <a
 href="ai-chat-frontend/eslint.config.mjs">eslint.config.mjs</a><br />
-│         ├── <a
-href="ai-chat-frontend/next-env.d.ts">next-env.d.ts</a><br />
-│         ├── <a
+│   ├── <a href="ai-chat-frontend/next-env.d.ts">next-env.d.ts</a><br />
+│   ├── <a
 href="ai-chat-frontend/next.config.ts">next.config.ts</a><br />
-│         ├── <a
+│   ├── <a
 href="ai-chat-frontend/package-lock.json">package-lock.json</a><br />
-│         ├── <a
-href="ai-chat-frontend/package.json">package.json</a><br />
-│         ├── <a
+│   ├── <a href="ai-chat-frontend/package.json">package.json</a><br />
+│   ├── <a
 href="ai-chat-frontend/postcss.config.mjs">postcss.config.mjs</a><br />
-│         ├── public/<br />
-│         │         ├── <a
+│   ├── public/<br />
+│   │   ├── <a
 href="ai-chat-frontend/public/file.svg">file.svg</a><br />
-│         │         ├── <a
+│   │   ├── <a
 href="ai-chat-frontend/public/globe.svg">globe.svg</a><br />
-│         │         ├── <a
+│   │   ├── <a
 href="ai-chat-frontend/public/next.svg">next.svg</a><br />
-│         │         ├── <a
+│   │   ├── <a
 href="ai-chat-frontend/public/vercel.svg">vercel.svg</a><br />
-│         │         └── <a
+│   │   └── <a
 href="ai-chat-frontend/public/window.svg">window.svg</a><br />
-│         ├── src/<br />
-│         │         ├── app/<br />
-│         │         │         ├── admin/<br />
-│         │         │         │         └── <a
+│   ├── src/<br />
+│   │   ├── app/<br />
+│   │   │   ├── admin/<br />
+│   │   │   │   └── <a
 href="ai-chat-frontend/src/app/admin/page.tsx">page.tsx</a><br />
-│         │         │         ├── api/<br />
-│         │         │         │         ├── admin/<br />
-│         │         │         │         │         └── ingest/<br />
-│         │         │         │         │                   ├──
-file/<br />
-│         │         │         │         │                   │         └──
-<a
+│   │   │   ├── api/<br />
+│   │   │   │   ├── admin/<br />
+│   │   │   │   │   └── ingest/<br />
+│   │   │   │   │       ├── file/<br />
+│   │   │   │   │       │   └── <a
 href="ai-chat-frontend/src/app/api/admin/ingest/file/route.ts">route.ts</a><br />
-│         │         │         │         │                   ├──
-text/<br />
-│         │         │         │         │                   │         └──
-<a
+│   │   │   │   │       ├── text/<br />
+│   │   │   │   │       │   └── <a
 href="ai-chat-frontend/src/app/api/admin/ingest/text/route.ts">route.ts</a><br />
-│         │         │         │         │                   └──
-url/<br />
-│         │         │         │         │                             └──
-<a
+│   │   │   │   │       └── url/<br />
+│   │   │   │   │           └── <a
 href="ai-chat-frontend/src/app/api/admin/ingest/url/route.ts">route.ts</a><br />
-│         │         │         │         └── chat/<br />
-│         │         │         │                   └── <a
+│   │   │   │   └── chat/<br />
+│   │   │   │       └── <a
 href="ai-chat-frontend/src/app/api/chat/route.ts">route.ts</a><br />
-│         │         │         ├── <a
+│   │   │   ├── <a
 href="ai-chat-frontend/src/app/favicon.ico">favicon.ico</a><br />
-│         │         │         ├── <a
+│   │   │   ├── <a
 href="ai-chat-frontend/src/app/globals.css">globals.css</a><br />
-│         │         │         ├── <a
+│   │   │   ├── <a
 href="ai-chat-frontend/src/app/layout.tsx">layout.tsx</a><br />
-│         │         │         └── <a
+│   │   │   └── <a
 href="ai-chat-frontend/src/app/page.tsx">page.tsx</a><br />
-│         │         ├── components/<br />
-│         │         │         └── ui/<br />
-│         │         │                   ├── <a
+│   │   ├── components/<br />
+│   │   │   └── ui/<br />
+│   │   │       ├── <a
 href="ai-chat-frontend/src/components/ui/alert.tsx">alert.tsx</a><br />
-│         │         │                   ├── <a
+│   │   │       ├── <a
 href="ai-chat-frontend/src/components/ui/avatar.tsx">avatar.tsx</a><br />
-│         │         │                   ├── <a
+│   │   │       ├── <a
 href="ai-chat-frontend/src/components/ui/badge.tsx">badge.tsx</a><br />
-│         │         │                   ├── <a
+│   │   │       ├── <a
 href="ai-chat-frontend/src/components/ui/button.tsx">button.tsx</a><br />
-│         │         │                   ├── <a
+│   │   │       ├── <a
 href="ai-chat-frontend/src/components/ui/card.tsx">card.tsx</a><br />
-│         │         │                   ├── <a
+│   │   │       ├── <a
 href="ai-chat-frontend/src/components/ui/input.tsx">input.tsx</a><br />
-│         │         │                   ├── <a
+│   │   │       ├── <a
 href="ai-chat-frontend/src/components/ui/label.tsx">label.tsx</a><br />
-│         │         │                   ├── <a
+│   │   │       ├── <a
 href="ai-chat-frontend/src/components/ui/progress.tsx">progress.tsx</a><br />
-│         │         │                   ├── <a
+│   │   │       ├── <a
 href="ai-chat-frontend/src/components/ui/scroll-area.tsx">scroll-area.tsx</a><br />
-│         │         │                   ├── <a
+│   │   │       ├── <a
 href="ai-chat-frontend/src/components/ui/switch.tsx">switch.tsx</a><br />
-│         │         │                   ├── <a
+│   │   │       ├── <a
 href="ai-chat-frontend/src/components/ui/tabs.tsx">tabs.tsx</a><br />
-│         │         │                   └── <a
+│   │   │       └── <a
 href="ai-chat-frontend/src/components/ui/textarea.tsx">textarea.tsx</a><br />
-│         │         └── lib/<br />
-│         │                   └── <a
+│   │   └── lib/<br />
+│   │       └── <a
 href="ai-chat-frontend/src/lib/utils.ts">utils.ts</a><br />
-│         └── <a
-href="ai-chat-frontend/tsconfig.json">tsconfig.json</a><br />
+│   └── <a href="ai-chat-frontend/tsconfig.json">tsconfig.json</a><br />
 └── <a href="index.html">index.html</a></p>
 <p>16 directories, 46 files<br />
 <!-- END_TREE --></p>
@@ -368,7 +361,7 @@ href="ai-chat-frontend/tsconfig.json">tsconfig.json</a><br />
   window.MathJax = {
     tex: {
       inlineMath: [['$', '$'], ['\\(', '\\)']],
-      displayMath: [['2807', '2807'], ['\\[', '\\]']],
+      displayMath: [['2784', '2784'], ['\\[', '\\]']],
       processEscapes: true
     },
     options: {
