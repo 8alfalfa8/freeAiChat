@@ -8,7 +8,9 @@ ai-chat-backendは、マルチLLM対応AIチャットAPIエンジンです。
 * ナレッジベース連携型FAQチャットボット
 * 営業・提案支援チャット（CRM連携）
 
+<!--
 〇 [AI開発に関する技術資料](https://github.com/8alfalfa8/Tec-Doc/tree/main/02_%E6%8A%80%E8%A1%93/AI)
+-->
 
 ---
 
@@ -27,62 +29,79 @@ ai-chat-backendは、マルチLLM対応AIチャットAPIエンジンです。
 
 ### ◆ システム構成図
 
-- 処理フロー
+#### ① 登録系処理フロー（データの流れ込み）
 
 ```
 [ユーザー画面（Webブラウザ/クライアント）]
     │
     ├─ /ingest（テキスト登録）
     ├─ /upload（ファイル登録）
-    ├─ /ingest-url（URL登録）
-    └─ /ask（質問応答）
-            │
-            ▼
-    [FastAPIサービス]
-            │
-    ┌───────┴───────┐
-    ▼               ▼
-[登録系処理]      [RAG処理（/ask）]
-    │               │
-    ▼               ▼
-[前処理・チャンク分割]    [リトリーバー]
-    │               │
-    ▼               ▼
-[Embeddingモデル]   [WeaviateベクトルDB]
-    │               ▲
-    ▼               │
-[WeaviateベクトルDB] │
-    │               │
-    └───────┬───────┘
-            │
-            └──────→ [関連文脈（上位3件）]
-                          │
-                          ▼
-                  [LangChain RAG処理]
-                          │
-                          ▼
-                  [LLMプロバイダー]
-                  ├─ OpenAI
-                  ├─ Groq
-                  └─ その他LLM
-                          │
-                          ▼
-                  [回答生成]
-                          │
-                          ▼
-              [ユーザー画面へ返却]
+    └─ /ingest-url（URL登録）
+                │
+                ▼
+         [FastAPIサービス]
+                │
+                ▼
+       [前処理・チャンク分割]
+                │
+                ▼
+         [Embeddingモデル]
+                │
+                ▼
+        [WeaviateベクトルDB]
 ```
 
 ---
 
-#### 補足：各エンドポイントの役割
+#### ② 質問応答系処理フロー（データの引き出し）
 
-| エンドポイント | 処理内容 | 保存先 |
-|-------------|---------|--------|
-| `/ingest` | テキストを直接ベクトル化して保存 | Weaviate |
-| `/upload` | PDF/TXTファイルを受け取り、抽出→前処理→チャンク分割→保存 | Weaviate |
-| `/ingest-url` | URLからHTMLをスクレイピングし、テキスト抽出→保存 | Weaviate |
-| `/ask` | 質問文をベクトル化→類似検索→LLMで回答生成 | レスポンス返却 |
+```
+[ユーザー画面（Webブラウザ/クライアント）]
+    │
+    └─ /ask（質問応答）
+                │
+                ▼
+         [FastAPIサービス]
+                │
+                ▼
+         [RAG処理（/ask）]
+                │
+                ▼
+          [リトリーバー]
+                │
+                ▼
+        [WeaviateベクトルDB]
+                │
+                ▼
+        [関連文脈（上位3件）]
+                │
+                ▼
+        [LangChain RAG処理]
+                │
+                ▼
+         [LLMプロバイダー]
+                ├─ OpenAI
+                ├─ Groq
+                └─ その他LLM
+                    │
+                    ▼
+                [回答生成]
+                    │
+                    ▼
+            [ユーザー画面へ返却]
+```
+
+---
+
+#### 補足：2つのフローの関係
+
+| フロー | 役割 | イメージ |
+|--------|------|---------|
+| **登録系** | ドキュメントをベクトル化して **Weaviateに蓄積** する | 「本棚に本を並べる」 |
+| **質問応答系** | Weaviateから **関連情報を引き出し**、LLMで回答を作る | 「本棚から必要な本を探して、内容を要約して伝える」 |
+
+登録系で貯めた知識が、質問応答系で検索・参照されることで、RAG（検索拡張生成）が成立しています。
+
 ---
 
 ### ◆ 構成ファイル
@@ -294,10 +313,10 @@ flowchart LR
 
 ```mermaid
 flowchart TB
-    subgraph 外部["外部サービス"]
+    subgraph 外部["外部サービス・アクセス元"]
+        Web[Webサイト<br/>/ クライアント]
         Groq[Groq API<br/>llama3-70b]
         OpenAI[OpenAI API<br/>gpt-4-turbo]
-        Web[Webサイト]
     end
 
     subgraph FastAPI["FastAPI アプリケーション"]
@@ -315,6 +334,11 @@ flowchart TB
         Embed["埋め込みモデル<br/>all-MiniLM-L6-v2"]
     end
 
+    Web --> Endpoint1
+    Web --> Endpoint2
+    Web --> Endpoint3
+    Web -.-> Endpoint4
+
     Endpoint1 --> RAG
     RAG --> Embed
     RAG --> Groq
@@ -326,7 +350,6 @@ flowchart TB
     Endpoint4 --> Chunk --> Embed
 
     Weaviate --> RAG
-    Web --> Endpoint4
 ```
 
 ---
