@@ -1,3 +1,4 @@
+# file: ai-chat-backend/init_weaviate.py
 import os
 from dotenv import load_dotenv
 load_dotenv()
