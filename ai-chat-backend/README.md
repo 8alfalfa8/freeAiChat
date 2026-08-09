@@ -275,10 +275,10 @@ sequenceDiagram
 
 ```mermaid
 flowchart LR
-    A[Shutdown Signal Received] --> B[@app.on_event shutdown]
-    B --> C[client.close]
-    C --> D[Disconnect Weaviate]
-    D --> E[Process Termination]
+    N1[Shutdown Signal Received] --> N2[@app.on_event shutdown]
+    N2 --> N3[client.close]
+    N3 --> N4[Disconnect Weaviate]
+    N4 --> N5[Process Termination]
 ```
 
 ※Shutdown Signal Received：終了シグナル受信
