@@ -85,74 +85,6 @@ ai-chat-backendは、マルチLLM対応AIチャットAPIエンジンです。
 | `/ask` | 質問文をベクトル化→類似検索→LLMで回答生成 | レスポンス返却 |
 ---
 
-- mermaid図
-
-```mermaid
-flowchart TD
-    subgraph Client["ユーザー画面（Webブラウザ/クライアント）"]
-        direction LR
-        EP1[/ingest<br/>テキスト登録/]
-        EP2[/upload<br/>ファイル登録/]
-        EP3[/ingest-url<br/>URL登録/]
-        EP4[/ask<br/>質問応答/]
-    end
-
-    API[FastAPIサービス]
-
-    subgraph RegisterFlow["登録系処理"]
-        direction TB
-        PRE[前処理・チャンク分割]
-        EMB[無料Embeddingモデル<br/>all-MiniLM-L6-v2]
-    end
-
-    DB[(Weaviate<br/>ベクトルDB)]
-
-    subgraph RAGFlow["RAG処理（/ask）"]
-        direction TB
-        RET[リトリーバー<br/>k=3件取得]
-        LC[LangChain RAG処理]
-        LLM{LLMプロバイダー}
-        OAI[OpenAI]
-        GROQ[Groq]
-        OTHER[その他LLM]
-        GEN[回答生成]
-    end
-
-    EP1 --> API
-    EP2 --> API
-    EP3 --> API
-    EP4 --> API
-
-    API --> RegisterFlow
-    PRE --> EMB
-    EMB --> DB
-
-    API --> RAGFlow
-    RET <-->|ベクトル検索| DB
-    RET --> LC
-    LC --> LLM
-    LLM --> OAI
-    LLM --> GROQ
-    LLM --> OTHER
-    OAI --> GEN
-    GROQ --> GEN
-    OTHER --> GEN
-    GEN --> EP4
-```
-
----
-
-#### 図の見方
-
-| 領域 | 役割 |
-|------|------|
-| **ユーザー画面** | 4つのエンドポイント（`/ingest`, `/upload`, `/ingest-url`, `/ask`）を経由してFastAPIにアクセス |
-| **FastAPIサービス** | リクエストを受け付け、登録系とRAG系に振り分け |
-| **登録系処理** | テキスト抽出 → 前処理・チャンク分割 → **Embeddingモデル**でベクトル化 → **Weaviate**に保存 |
-| **RAG処理** | 質問をベクトル化 → **Weaviate**から類似文書を**リトリーブ** → **LangChain**でプロンプト構築 → **LLM**で回答生成 → ユーザーに返却 |
-
-この構成により、ドキュメントの登録と質問応答が一本のベクトルDB（Weaviate）を介して連動しています。
-
 ### ◆ 構成ファイル
 
 ```
@@ -341,13 +273,15 @@ sequenceDiagram
 
 #### 4. シャットダウン時の処理
 
-```mermaid
 flowchart LR
-    A[終了シグナル受信] --> B[@app.on_event shutdown]
+    A[Shutdown Signal Received] --> B[@app.on_event shutdown]
     B --> C[client.close]
-    C --> D[Weaviate接続切断]
-    D --> E[プロセス終了]
-```
+    C --> D[Disconnect Weaviate]
+    D --> E[Process Termination]
+
+※Shutdown Signal Received：終了シグナル受信
+※Disconnect Weaviate：Weaviate接続切断
+※Process Termination：プロセス終了
 
 ---
 
