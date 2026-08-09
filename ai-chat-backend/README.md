@@ -275,10 +275,10 @@ sequenceDiagram
 
 ```mermaid
 flowchart LR
-    N1[Shutdown Signal Received] --> N2[@app.on_event shutdown]
-    N2 --> N3[client.close]
-    N3 --> N4[Disconnect Weaviate]
-    N4 --> N5[Process Termination]
+    N1["Shutdown Signal Received"] --> N2["FastAPI Shutdown Event (@app.on_event)"]
+    N2 --> N3["client.close()"]
+    N3 --> N4["Disconnect Weaviate"]
+    N4 --> N5["Process Termination"]
 ```
 
 ※Shutdown Signal Received：終了シグナル受信
