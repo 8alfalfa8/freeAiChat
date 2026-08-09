@@ -273,13 +273,19 @@ sequenceDiagram
 
 #### 4. シャットダウン時の処理
 
-```mermaid
 flowchart LR
     A[Shutdown Signal Received] --> B[@app.on_event shutdown]
     B --> C[client.close]
     C --> D[Disconnect Weaviate]
     D --> E[Process Termination]
+<<<<<<< HEAD
 ```
+=======
+
+※Shutdown Signal Received：終了シグナル受信
+※Disconnect Weaviate：Weaviate接続切断
+※Process Termination：プロセス終了
+>>>>>>> 906c3d616ce48d6c944e8304105a59906dcd243f
 
 ※Shutdown Signal Received：終了シグナル受信
 ※Disconnect Weaviate：Weaviate接続切断
