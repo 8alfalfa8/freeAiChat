@@ -26,7 +26,7 @@ ai-chat-backendは、マルチLLM対応AIチャットAPIエンジンです。
 ### システム構成図
 
 ```
-[ユーザー画面] 
+[ユーザー画面]
     │
     ▼
 [FastAPIサービス]  ← 呼び出し → [LangChain RAG処理]
@@ -77,13 +77,26 @@ requests
 ```
 
 ```bash
-# 仮想環境の作成
+# Linux仮想環境の作成
 python3 -m venv venv
+python3 -m pip install --upgrade pip
 source venv/bin/activate
 
 # 必要なパッケージをインストール
 pip install -r requirements.txt
 ```
+
+```PowerShell
+# Windows(PowerShell)仮想環境の作成（VsCode対応）
+python -m venv venv
+python.exe -m pip install --upgrade pip
+.\venv\Scripts\Activate.ps1
+
+# 必要なパッケージをインストール
+pip install -r requirements.txt
+```
+
+※Pythonの仮想環境（venv）を無効化する方法
 
 #### 2. 環境設定 (`.env`)
 
@@ -184,7 +197,7 @@ curl -X POST "http://localhost:8000/ingest" \
 
 ```bash
 # アップロードファイル（pdfまたはtxt）よりナレッジ追加API
-curl -X POST "http://localhost:8000/upload/" \ 
+curl -X POST "http://localhost:8000/upload/" \
 -F "file=@/file_path/file_name.pdf" \
 -F "chunk_size=2000" \
 -F "preprocess=true"
@@ -237,11 +250,3 @@ curl -X POST "http://localhost:8000/ask" -H "Content-Type: application/json" -d 
 ---
 
 このソリューションは、コストと性能のバランスが求められるナレッジベース型QA（質問応答）アプリケーションに特に適しており、実運用において無料のEmbeddingモデルを活用しつつ、要件に応じてLLMプロバイダーを柔軟に選択できます。
-
-
-
-
-
-
-
-
