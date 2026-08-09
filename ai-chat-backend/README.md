@@ -282,7 +282,9 @@ flowchart LR
 ```
 
 ※Shutdown Signal Received：終了シグナル受信
+
 ※Disconnect Weaviate：Weaviate接続切断
+
 ※Process Termination：プロセス終了
 
 
