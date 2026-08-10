@@ -159,6 +159,10 @@ pip install -r requirements.txt
 
 ※Pythonの仮想環境（venv）を無効化する方法
 
+```
+deactivate
+```
+
 #### 2. 環境設定 (`.env`)
 
 ```env
