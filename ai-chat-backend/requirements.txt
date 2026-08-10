@@ -5,7 +5,7 @@ langchain-groq
 langchain-weaviate
 langchain-huggingface
 weaviate-client>=4.0.0
-sentence-transformers  # 免费Embedding
+sentence-transformers  # 無料Embedding
 fastapi
 uvicorn
 python-dotenv

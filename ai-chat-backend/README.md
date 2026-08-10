@@ -118,7 +118,14 @@ freeAiChat
 
 ### ◆ コアコンポーネント実装
 
-#### 1. 環境準備 (`requirements.txt`)
+#### 1. 環境準備
+
+* 前提
+　- Docker（Docker Desktop）
+　- Linux（動作確認：Winodws WSL2 - Ubuntu24）
+　- Python3インストール済み(Python 3.10.13)
+
+* 必要なパッケージ(`requirements.txt`)
 
 ```python
 langchain-core
@@ -138,21 +145,13 @@ beautifulsoup4
 requests
 ```
 
+* 仮想環境の作成（Linux：Winodws WSL2 - Ubuntu24）
+
 ```bash
 # Linux仮想環境の作成
 python3 -m venv venv
 python3 -m pip install --upgrade pip
 source venv/bin/activate
-
-# 必要なパッケージをインストール
-pip install -r requirements.txt
-```
-
-```PowerShell
-# Windows(PowerShell)仮想環境の作成（VsCode対応）
-python -m venv venv
-python.exe -m pip install --upgrade pip
-.\venv\Scripts\Activate.ps1
 
 # 必要なパッケージをインストール
 pip install -r requirements.txt
@@ -370,7 +369,9 @@ flowchart TB
 
 #### 1. サービス起動
 
-```bash
+- Dockerの構築（Windows PowerShell）
+
+```PowerShell
 # Weaviate 起動(初回)
 docker-compose up -d
 
@@ -378,7 +379,11 @@ docker-compose up -d
 docker ps         #コンテナー一覧
 docker stop       #コンテナー停止
 docker start      #コンテナー開始
+```
 
+- サービス起動（Linux:Winodws WSL2 - Ubuntu24)
+
+```bash
 # Weaviateインデックスの初期化
 python init_weaviate.py
 
