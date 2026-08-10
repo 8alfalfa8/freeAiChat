@@ -1,8 +1,11 @@
 # pyc ファイルは要らない
 *.pyc
 
-# output フォルダは要らない
-/.venv/
+# .next フォルダは要らない
+.next/
+
+# .venv フォルダは要らない
+.venv/
 
 # node_modules フォルダは要らない
-node_modules
+node_modules/
