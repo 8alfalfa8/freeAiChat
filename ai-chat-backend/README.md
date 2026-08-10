@@ -120,12 +120,12 @@ freeAiChat
 
 #### 1. 環境準備
 
-* 前提
-　- Docker（Docker Desktop）
-　- Linux（動作確認：Winodws WSL2 - Ubuntu24）
-　- Python3インストール済み(Python 3.10.13)
+- 前提
+  - Docker（Docker Desktop）
+  - Linux（動作確認：Winodws WSL2 - Ubuntu24）
+  - Python3インストール済み(Python 3.10.13)
 
-* 必要なパッケージ(`requirements.txt`)
+- 必要なパッケージ(`requirements.txt`)
 
 ```python
 langchain-core
@@ -145,7 +145,7 @@ beautifulsoup4
 requests
 ```
 
-* 仮想環境の作成（Linux：Winodws WSL2 - Ubuntu24）
+- 仮想環境の作成（Linux：Winodws WSL2 - Ubuntu24）
 
 ```bash
 # Linux仮想環境の作成
