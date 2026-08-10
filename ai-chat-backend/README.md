@@ -177,23 +177,17 @@ WEAVIATE_INDEX_NAME=knowledge_base
 # そのた環境変数
 UPLOADED_FILES_DIR=/upload_files_path
 ```
-
-#### 3. コアサービス (`app.py`)
-
-[app.py](./app.py)  をご参照ください。
-
-
-#### 4. Weaviate 初期化 (`init_weaviate.py`)
+#### 3. Weaviate 初期化 (`init_weaviate.py`)
 
 [init_weaviate.py](./init_weaviate.py) をご参照ください。
 
 
----
+#### 4. コアサービス (`app.py`)
 
-### ◆ (app.py)システム動作フロー
+[app.py](./app.py)  をご参照ください。
 
 
-#### 1. アプリケーション起動時の初期化フロー
+##### ①アプリケーション起動時の初期化フロー
 
 ```mermaid
 flowchart TD
@@ -216,7 +210,7 @@ flowchart TD
 
 ---
 
-#### 2. ドキュメント登録フロー（3つの経路）
+##### ②ドキュメント登録フロー（3つの経路）
 
 ```mermaid
 flowchart TD
@@ -258,7 +252,7 @@ flowchart TD
 
 ---
 
-#### 3. 質問応答フロー（RAG = Retrieval-Augmented Generation）
+##### ③質問応答フロー（RAG = Retrieval-Augmented Generation）
 
 ```mermaid
 sequenceDiagram
@@ -292,7 +286,7 @@ sequenceDiagram
 
 ---
 
-#### 4. シャットダウン時の処理
+#### ④シャットダウン時の処理
 
 ```mermaid
 flowchart LR
@@ -311,7 +305,7 @@ flowchart LR
 
 ---
 
-#### 全体アーキテクチャ図（俯瞰）
+##### 全体アーキテクチャ図（俯瞰）
 
 ```mermaid
 flowchart TB
@@ -356,7 +350,7 @@ flowchart TB
 
 ---
 
-#### まとめ：データの流れ
+##### まとめ：データの流れ
 
 | フェーズ | 入力 | 処理 | 出力先 |
 |---------|------|------|--------|
