@@ -35,7 +35,7 @@ ai-chat-frontend は、同一リポジトリ内の 「ai-chat-backend」のAPI �
 ## 前提条件
 
 ### 1. ai-chat-backendが起動されること
-ai-chat-backendの起動はai-chat-backendのREADMEをご参照ください。
+ai-chat-backendの起動はai-chat-backendの[README](./../README.md))をご参照ください。
 
 ### 2. Node.jsのインストール
 
