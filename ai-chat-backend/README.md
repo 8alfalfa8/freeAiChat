@@ -108,7 +108,7 @@ ai-chat-backendは、マルチLLM対応AIチャットAPIエンジンです。
 
 ```
 freeAiChat
-├─ LICENSE                             ← ライセンス
+├─ .env                                ← 環境設定
 ├─ README                              ← 説明
 ├─ requirements.txt                    ← 必須パッケージ一覧
 ├─ app.py                              ← コアサービス
