@@ -6,6 +6,9 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Profile-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/8alfalfa8)
 
 本リポジトリ（freeAiChat）は、マルチLLM対応AIチャットアプリです。
+>また、本アプリは **Groq（LPU）を利用することで、LLM推論コストを完全無料で運用できます。**
+OpenAI / Groq を環境変数で切り替え可能なため、用途に応じて「高速・無料」「高品質モデル」を柔軟に選択できます。
+
 
 ◆ ユースケース
 * コールセンターやサポートデスクの自動化
