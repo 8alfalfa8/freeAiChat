@@ -375,14 +375,15 @@ flowchart TB
 docker-compose up -d
 
 初回以降
-docker ps         #コンテナー一覧
-docker stop       #コンテナー停止
-docker start      #コンテナー開始
+docker ps -a                    #コンテナー一覧
+docker start {CONTAINER ID}     #コンテナー開始
+docker stop {CONTAINER ID}      #コンテナー停止
 ```
 
 - サービス起動（Linux:Winodws WSL2 - Ubuntu24)
 
 ```bash
+source venv/bin/activate
 # Weaviateインデックスの初期化
 python init_weaviate.py
 

@@ -159,7 +159,8 @@ def get_llm():
         )
     elif provider == "groq":
         return ChatGroq(
-            model="llama3-70b-8192",
+            # model="llama3-70b-8192",  # 2025年8月30日に廃止
+            model="openai/gpt-oss-120b",
             temperature=0.5,
             api_key=os.getenv("GROQ_API_KEY")
         )
