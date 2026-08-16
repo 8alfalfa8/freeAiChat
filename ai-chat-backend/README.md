@@ -111,7 +111,8 @@ OpenAI / Groq を環境変数で切り替え可能なため、用途に応じて
 ```
 freeAiChat
 ├─ .env                                ← 環境設定
-├─ README                              ← 説明
+├─ README.md                           ← 説明
+├─ TESTDATA.md                         ← 検証データ説明
 ├─ requirements.txt                    ← 必須パッケージ一覧
 ├─ app.py                              ← コアサービス
 ├─ init_weaviate.py                    ← Weaviate初期化
