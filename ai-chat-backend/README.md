@@ -123,9 +123,9 @@ freeAiChat
 #### 1. 環境準備
 
 - 前提
-  - Docker（Docker Desktop）
-  - Linux（動作確認：Winodws WSL2 - Ubuntu24）
-  - Python3インストール済み(Python 3.10.13)
+  - Docker（Docker Desktop）インストール済み（Windows版）
+  - Linux（動作確認環境：Winodws WSL2 - Ubuntu24）
+  - LinuxでPython3インストール済み(動作確認環境：Python 3.10.13)
 
 - 必要なパッケージ(`requirements.txt`)
 
@@ -151,6 +151,7 @@ requests
 
 ```bash
 # Linux仮想環境の作成
+cd ./freeAiChat/ai-chat-backend/
 python3 -m venv venv
 python3 -m pip install --upgrade pip
 source venv/bin/activate
@@ -383,7 +384,10 @@ docker stop {CONTAINER ID}      #コンテナー停止
 - サービス起動（Linux:Winodws WSL2 - Ubuntu24)
 
 ```bash
+# 仮想環境有効化
+cd ./freeAiChat/ai-chat-backend/
 source venv/bin/activate
+
 # Weaviateインデックスの初期化
 python init_weaviate.py
 
